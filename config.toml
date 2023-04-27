@@ -25,7 +25,7 @@ accent_color = "green"
 # Enabling dark background will also modify primary font color
 # to be darker.
 # Defaults to accent color (or, if not accent color specified, to blue).
-background_color = "green"
+# background_color = "green"
 
 # The logo text - defaults to "Terminimal theme"
 logo_text = "Mary's Page"
