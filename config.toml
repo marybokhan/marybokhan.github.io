@@ -46,12 +46,12 @@ author = "Mary Bokhan"
 menu_items = [
     # each of these is optional, name and url are required
     # $BASE_URL is going to be substituted by base_url from configuration
-    # {name = "blog", url = "$BASE_URL"},
+    {name = "Blog", url = "$BASE_URL"},
 
     # tags should only be enabled if you have "tags" taxonomy
     # see documentation below for more details
-    # {name = "tags", url = "$BASE_URL/tags"},
-    # {name = "archive", url = "$BASE_URL/archive"},
+    {name = "Tags", url = "$BASE_URL/tags"},
+    {name = "Archive", url = "$BASE_URL/archive"},
     {name = "About", url = "$BASE_URL/about"},
     {name = "Resume", url = "$BASE_URL/resume"},
     
@@ -79,8 +79,8 @@ use_full_hack_font = false
 #           Mimetype defaults to "image/x-icon".
 #           The URL should point at a file located
 #           in your site's "static" directory.
-# favicon = "/favicon.png"
-# favicon_mimetype = "image/png"
+favicon = "/favicon.png"
+favicon_mimetype = "image/png"
 
 # Optional: Set how <title> elements are rendered.
 # Values:
