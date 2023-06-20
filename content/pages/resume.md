@@ -11,7 +11,7 @@ I got BS in Water Quality and Wastewater Treatment Management at Belarusian Nati
 
 ### Career transition
 
-Apr 2022 - Present
+May 2022 - Present
 
 During my career break, I dedicated my time to upskilling and transitioning from a QA Engineer to an iOS Software Engineer. This period allowed me to focus on expanding my knowledge, refining my technical abilities, and gaining hands-on experience in iOS development.
 
