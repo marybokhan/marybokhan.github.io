@@ -1,119 +1,141 @@
-{% import "macros/date.html" as date_macros -%}
-{% import "macros/head.html" as head_macros -%}
-{% import "macros/menu.html" as menu_macros -%}
-{% import "macros/post.html" as post_macros -%}
-{% import "macros/title.html" as title_macros -%}
+{% import "post_macros.html" as post_macros %}
 
 <!DOCTYPE html>
-<html lang="{%- if config.default_language -%}{{ config.default_language }}{%- else -%}en{%- endif -%}">
+<html lang="en">
 
 <head>
-    <title>{%- block title %}{{ config.title }}{% endblock title -%}</title>
-    {{ head_macros::head(config=config) }}
+  {% block analytics %}
+  {% endblock analytics %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    {%- if config.generate_feed %}
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path="rss.xml") | safe }}">
-    {% endif -%}
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
 
-    {%- if config.extra.favicon %}
-        <link rel="shortcut icon" type="{{ config.extra.favicon_mimetype | default(value="image/x-icon") | safe }}" href="{{ config.extra.favicon | safe }}">
-    {% endif -%}
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{{ get_url(path="css/bootstrap.min.css") }}">
+  <!-- Custom fonts for this template -->
+  <link href=" {{ get_url(path="css/all.min.css") }}" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
 
-    {%- block extra_head %}
-    {% endblock extra_head -%}
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="{{ get_url(path="clean-blog.css", trailing_slash=false) }}">
+
 </head>
 
-<body class="">
-<div class="container">
-    {% block header %}
-    <header class="header">
-        <div class="header__inner">
-            <div class="header__logo">
-                {%- if config.logo_home_link %}
-                    {% set logo_link = config.logo_home_link %}
-                {% else %}
-                    {% set logo_link = config.base_url %}
-                {% endif -%}
-                <a href="{{ logo_link | safe }}" style="text-decoration: none;">
-                    <div class="logo">
-                      {% block logo_content %}
-                        {%- if config.extra.logo_text %}
-                            {{ config.extra.logo_text }}
-                        {% else %}
-                            Terminimal theme
-                        {% endif -%}
-                        {% endblock logo_content %}
-                    </div>
-                </a>
-            </div>
-        </div>
+<body>
 
-        {% block header_menu %}
-        {{ menu_macros::menu(config=config, current_path=current_path) }}
-        {% endblock header_menu %}
-    </header>
-    {% endblock header %}
-
-    <div class="content">
-        {% block content %}
-        <div class="posts">
-            {%- if paginator %}
-                {%- set show_pages = paginator.pages -%}
-            {% else %}
-                {%- set show_pages = section.pages -%}
-            {% endif -%}
-
-            {%- for page in show_pages %}
-                <div class="post on-list">
-                    {{ post_macros::header(page=page) }}
-                    {{ post_macros::content(page=page, summary=true) }}
-                </div>
-            {% endfor -%}
-            <div class="pagination">
-                <div class="pagination__buttons">
-                {%- if paginator.previous %}
-                    <span class="button previous">
-                        <a href="{{ paginator.previous | safe }}">
-                            <span class="button__icon">←</span>&nbsp;
-                            <span class="button__text">Newer posts</span>
-                        </a>
-                    </span>
-                {% endif -%}
-                {%- if paginator.next %}
-                    <span class="button next">
-                        <a href="{{ paginator.next | safe }}">
-                            <span class="button__text">Older posts</span>&nbsp;
-                            <span class="button__icon">→</span>
-                        </a>
-                    </span>
-                {% endif -%}
-                </div>
-            </div>
-        </div>
-        {% endblock content %}
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="{{ config.base_url }}">{{config.title}}</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          {% for item in config.extra.clean_blog_menu %}
+          <li class="nav-item">
+            <a class="nav-link"
+              href="{{ item.url | replace(from="$BASE_URL", to=config.base_url) }}">{{ item.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    {% block footer %}
-    <footer class="footer">
-        <div class="footer__inner">
-            {%- if config.extra.copyright_html %}
-                <div class="copyright copyright--user">{{ config.extra.copyright_html | safe }}</div>
-            {% else %}
-                <div class="copyright">
-                    {%- if config.extra.author %}
-                        <span>© {{ date_macros::now_year() }} {{ config.extra.author }}</span>
-                    {% else %}
-                        <span>© {{ date_macros::now_year() }} Powered by <a href="https://www.getzola.org/">Zola</a></span>
-                    {% endif -%}
-                </div>
-            {% endif -%}
+  <!-- Page Header -->
+  {% block header %}
+  <header class="masthead" style="background-image: url('{{ get_url(path="/img/home-bg.jpg")}}')">
+    <div class="overlay">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>{{config.title}}</h1>
+            <span class="subheading">{{config.description}}</span>
+          </div>
         </div>
-    </footer>
-    {% endblock footer %}
+      </div>
+    </div>
+  </header>
+  {% endblock header %}
 
-</div>
-{%- block extra_body %}
-{% endblock extra_body -%}
+  {% block content %}
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="posts">
+          {% for page in paginator.pages %}
+          <div class="post-preview">
+            {{ post_macros::page_title(page=page) }}
+            <p class="post-summary">{{ page.summary | safe }}</p>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Paginator -->
+        <div class="clearfix">
+          {% if paginator.previous %}
+          <a class="btn btn-primary float-left" href="{{ paginator.previous }}"> &larr; Newer Posts</a>
+          {% endif %}
+          {% if paginator.next %}
+          <a class="btn btn-primary float-right" href="{{ paginator.next }}">Older Posts &rarr;</a>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+  {% endblock content %}
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            {% for item in config.extra.clean_blog_social %}
+            <li class="list-inline-item">
+              <a href="{{ item.url | replace(from="$BASE_URL", to=config.base_url) }}">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="{{ item.icon }} fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+          <p class="copyright text-muted">{% block copyright %}Copyright &copy; Mary Bokhan
+            2024{% endblock copyright %}</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ get_url(path="js/jquery.min.js") }}"></script>
+  <script src="{{ get_url(path="js/bootstrap.bundle.min.js") }}"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="{{ get_url(path="js/clean-blog.min.js") }}"></script>
+
+  <!--- Additional scripts -->
+  {% block extrascripts %}
+  {% endblock extrasripts %}
 </body>
 
 </html>

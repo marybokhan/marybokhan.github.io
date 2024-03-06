@@ -1,16 +1,8 @@
 +++
 title = "About"
 path = "about"
+template = "about.html"
 +++
-
-{{
-    image(
-        src="https://avatars.githubusercontent.com/u/41990451?v=4",
-        alt="about",
-        position="center",
-        style="width: 300px"
-    )
-}}
 
 Hi, my name is Mary.
 

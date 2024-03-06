@@ -1,13 +1,39 @@
 {% extends "index.html" %}
 
-{%- block title -%}
-{{ title_macros::title(page_title=page.title, main_title=config.title) }}
-{%- endblock -%}
+{% block header %}
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{{ get_url(path="/img/post-bg.jpg")}}')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          {{ post_macros::page_header(page=page) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock header %}
 
 {% block content %}
-    <div class="post">
-        {{ post_macros::header(page=page) }}
-        {{ post_macros::content(page=page, summary=false) }}
-        {{ post_macros::earlier_later(page=page) }}
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {{ page.content | safe }}
+        {% if page.taxonomies.tags %}
+        <div class="post-tags">
+          <p>Tags:
+            {% for tag in page.taxonomies.tags %}
+            <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}">#{{ tag }}</a>
+            {% endfor %}
+          </p>
+        </div>
+        {% endif %}
+      </div>
     </div>
+  </div>
+</article>
 {% endblock content %}
