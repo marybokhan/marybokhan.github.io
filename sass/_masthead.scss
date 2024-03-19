@@ -65,6 +65,7 @@ header.masthead {
       font-size: 20px;
       font-weight: 300;
       font-style: italic;
+      margin-top: 20px;
       @include serif-font;
       a {
         color: $white;
@@ -72,7 +73,7 @@ header.masthead {
     }
     @media only screen and (min-width: 768px) {
       h1 {
-        font-size: 55px;
+        font-size: 50px;
       }
       .subheading {
         font-size: 30px;
