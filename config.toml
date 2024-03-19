@@ -3,8 +3,8 @@ base_url = "https://marybokhan.github.io"
 generate_rss = true
 compile_sass = true
 
-title = "Mary Bokhan"
-description = "A blog about tech"
+title = "Mary's Blog"
+description = "Notes about iOS development"
 highlight_code = true
 
 taxonomies = [

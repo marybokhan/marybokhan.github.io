@@ -4,7 +4,7 @@ date = 2023-04-26
 
 [taxonomies]
 categories = ["Odd"]
-tags = ["markdown", "github"]
+tags = ["Markdown", "GitHub"]
 +++
 
 Welcome to my first blog post! I'm excited to share the story behind the creation of my personal web page, the technology I used, and the reasons for choosing these particular tools. As an iOS Engineer, having an online presence is crucial for showcasing my skills, networking, and keeping up with the latest trends in the industry. So let's dive into the journey of creating my personal web page!
