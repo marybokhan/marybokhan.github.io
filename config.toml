@@ -5,12 +5,15 @@ compile_sass = true
 
 title = "Mary's Blog"
 description = "Notes about iOS development"
-highlight_code = true
 
 taxonomies = [
     {name = "categories", rss = true, paginate_by=5},
     {name = "tags", rss = true, paginate_by=5},
 ]
+
+[markdown]
+highlight_code = true
+highlight_theme = "inspired-github"
 
 [extra]
 author = "Mary"
