@@ -10,6 +10,33 @@ I got BS in Water Quality and Wastewater Treatment Management at Belarusian Nati
 
 ## Experience
 
+### iOS Software Engineer, Self-employed
+
+Feb 2024 - Present
+
+- **SwiftUI**: Dedicating significant time to mastering SwiftUI, and applying learned skills to develop personal projects.
+- **UX/UI Design**:  Actively learning and applying UX/UI design principles to mobile projects, as well as for my website.
+- **Website Development**: Designing and developing a personal website to showcase my portfolio and blog content.
+- **Blog Writing**: Producing and publishing blog content focused on my learning journey in SwiftUI and personal project developments.
+<br/><br/>
+
+### iOS Software Engineer, Moneybox
+
+[moneyboxapp.com](https://www.moneyboxapp.com)
+
+Jul 2023 - Jan 2024
+
+Moneybox is a saving and investing app that helps people build their wealth with confidence.
+
+⚙️ Key responsibilities:
+- Implemented new features within the iOS application in the Customer Experience Mission, enhancing user experience and app functionality;
+- Collaborated closely with team members across various departments, including design, product management, and engineering.
+
+🏆 Achievements & Growth:
+- Enhanced technical skills in iOS development, mastering tools and frameworks such as UIKit, CoreData, MVVM, RESTful APIs, along with proficiency in CI/CD processes and unit testing;
+- Involved in diverse tasks and worked on various parts of the app, implementing key improvements to both the visual appeal and technical functionality of the app.
+<br/><br/>
+
 ### Career transition
 
 May 2022 - June 2023
@@ -21,39 +48,33 @@ Key activities during my career break included:
 📚 Completed various iOS development courses and workshops\
 🚀 Developed personal projects to apply new skills and showcase my capabilities\
 💻 Regularly solving algorithm problems to sharpen my problem-solving abilities\
-🤝 Networking with industry professionals\
-🧠 Staying up-to-date with the latest trends and best practices in mobile app development\
-
-Now, I am excited to apply my newly acquired skills and experiences in a professional setting as an iOS Software Engineer, creating innovative applications that enhance user experiences and drive business success.
+🧠 Staying up-to-date with the latest trends and best practices in mobile app development
+<br/><br/>
 
 ### QA Engineer, Prisma Labs
 
-[https://prisma-ai.com](https://prisma-ai.com)
+[prisma-ai.com](https://prisma-ai.com)
 
 Jul 2019 to Apr 2022
 
 Products: [Lensa](https://prisma-ai.com/lensa), [Prisma](https://prisma-ai.com/prisma), Skim
 
-Lensa is a visual-editing app that specializes in facial retouching tools, background adjustments, filters, effects, etc.\
-Prisma is an image-editing app that turns photos into paintings of art.\
-Skim is a video-editing app that automatically creates movies and synchronizes them with the music.
+**Lensa** is a visual-editing app that specializes in facial retouching tools, background adjustments, filters, effects, etc.\
+**Prisma** is an image-editing app that turns photos into paintings of art.\
+**Skim** is a video-editing app that automatically creates movies and synchronizes them with the music.
 
 Platforms: iOS, Android
 
 ⚙️ Key responsibilities:
-- Led major streams, including complex features in Lensa and the development of a new product Skim;
-- Conducted various testing types;
-- Investigated complex bugs using IDE for code debugging, analytics, and other tools;
-- Created and maintained testing documentation, including test cases, checklists, and datasets;
-- Analyzed and improved product feature requirements in collaboration with team members;
+- Led major streams, including complex features in **Lensa** and the development of a new product **Skim**;
 - Participated in grooming, planning, retros, and team meetings, and contributed to estimating development time for new features and releases;
 - Interviewed and assessed new candidates for the QA team.
 
 🏆 Achievements:
 - Implemented testing activities into the product development process, ensuring high-quality app performance and user experience;
-- Suggested and implemented a new project board workflow, improving team efficiency and collaboration;
 - Developed standardized bug report templates, test case templates, and feature testing templates for the team;
 - Established a regression testing board to streamline and optimize regression testing processes;
+- Analyzed and improved product feature requirements in collaboration with team members;
 - Organized the QA Department, creating processes, testing approaches, guides, device farms, and hiring new team members.
 
 🌱 Growth and Learning:
@@ -61,10 +82,11 @@ Platforms: iOS, Android
 - Developed expertise in a wide range of testing approaches, improving overall QA effectiveness;
 - Enhanced problem-solving and debugging skills through the investigation of complex bugs and the use of advanced debugging tools;
 - Strengthened leadership abilities by organizing the QA Department, interviewing candidates, and mentoring junior team members.
+<br/><br/>
 
 ### QA Engineer, Taqtile
 
-[https://taqtile.com](https://taqtile.com)
+[taqtile.com](https://taqtile.com)
 
 Aug 2018 – Jul 2019
 
@@ -91,7 +113,7 @@ Platforms: iPad, Microsoft HoloLens, Microsoft Surface.
 - Developed a deep understanding of complex app requirements and the challenges of working with advanced technologies like 3D markers and AR;
 - Refined project management and leadership skills, leading project boards and collaborating effectively with cross-functional teams;
 - Improved problem-solving abilities by troubleshooting issues and refining product requirements;
-- Gained valuable experience in client-facing roles, building strong relationships, and providing technical support.
+<br/><br/>
 
 ### Open Source Projects
 
