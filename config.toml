@@ -4,7 +4,7 @@ generate_rss = true
 compile_sass = true
 
 title = "Mary's Blog"
-description = "Notes about iOS development"
+description = "Notes about software development"
 
 taxonomies = [
     {name = "categories", rss = true, paginate_by=5},
