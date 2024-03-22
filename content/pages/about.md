@@ -1,18 +1,13 @@
 +++
 title = "About"
 path = "about"
+template = "about.html"
 +++
-
-{{
-    image(
-        src="https://avatars.githubusercontent.com/u/41990451?v=4",
-        alt="about",
-        position="center",
-        style="width: 300px"
-    )
-}}
 
 Hi, my name is Mary.
 
-I'm an experienced QA Engineer turned into iOS Software Engineer with a strong background in mobile app testing and a passion for creating impactful applications for users.\
-My various skill set, combined with my attention to detail, allows me to develop high-quality, innovative mobile applications that offer an exceptional user experience.
+I'm an iOS Software Engineer with a robust background in mobile app testing.\
+
+My drive for quality and design fuels my work, especially within the realms of photo and video, music, fashion, and lifestyle sectors.\
+
+I care about little details, visual appeal, functionality, and focus on straightforward problem-solving.
