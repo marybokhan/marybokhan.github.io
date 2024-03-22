@@ -23,9 +23,9 @@
   <title>{% block title %}{{ config.title }}{% endblock title %}</title>
 
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="{{ get_url(path=" css/bootstrap.min.css") }}">
+  <link rel="stylesheet" href="{{ get_url(path="css/bootstrap.min.css") }}">
   <!-- Custom fonts for this template -->
-  <link href=" {{ get_url(path=" css/all.min.css") }}" rel=" stylesheet" type="text/css">
+  <link href=" {{ get_url(path="css/all.min.css") }}" rel=" stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
     type='text/css'>
   <link
@@ -33,7 +33,7 @@
     rel='stylesheet' type='text/css'>
 
   <!-- Custom styles for this template -->
-  <link rel="stylesheet" href="{{ get_url(path=" clean-blog.css", trailing_slash=false) }}">
+  <link rel="stylesheet" href="{{ get_url(path="clean-blog.css", trailing_slash=false) }}">
   <link rel="icon" href="{{ get_url(path='/img/favicon.ico') }}" type="image/x-icon">
 
 </head>
@@ -54,7 +54,7 @@
         <ul class="navbar-nav ml-auto">
           {% for item in config.extra.clean_blog_menu %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ item.url | replace(from=" $BASE_URL", to=config.base_url) }}">{{ item.name
+            <a class="nav-link" href="{{ item.url | replace(from="$BASE_URL", to=config.base_url) }}">{{ item.name
               }}</a>
           </li>
           {% endfor %}
@@ -65,7 +65,7 @@
 
   <!-- Page Header -->
   {% block header %}
-  <header class="masthead" style="background-image: url('{{ get_url(path=" /img/home-bg.jpg")}}')">
+  <header class="masthead" style="background-image: url('{{ get_url(path="/img/home-bg.jpg")}}')">
     <div class="overlay">
     </div>
     <div class="container">
@@ -120,7 +120,7 @@
           <ul class="list-inline text-center">
             {% for item in config.extra.clean_blog_social %}
             <li class="list-inline-item">
-              <a href="{{ item.url | replace(from=" $BASE_URL", to=config.base_url) }}">
+              <a href="{{ item.url | replace(from="$BASE_URL", to=config.base_url) }}">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="{{ item.icon }} fa-stack-1x fa-inverse"></i>
@@ -137,15 +137,14 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="{{ get_url(path=" js/jquery.min.js") }}"></script>
-  <script src="{{ get_url(path=" js/bootstrap.bundle.min.js") }}"></script>
+  <script src="{{ get_url(path="js/jquery.min.js") }}"></script>
+  <script src="{{ get_url(path="js/bootstrap.bundle.min.js") }}"></script>
 
   <!--Custom scripts for this template-->
-  <script src="{{ get_url(path=" js/clean-blog.min.js") }}"></script>
+  <script src="{{ get_url(path="js/clean-blog.min.js") }}"></script>
 
   <!--- Additional scripts -->
   {% block extrascripts %}
   {% endblock extrasripts %}
 </body>
-
 </html>
