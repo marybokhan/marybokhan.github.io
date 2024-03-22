@@ -19,6 +19,7 @@ In today's digital age, having a personal web page is essential for any professi
 2. **Build an online presence**: An online portfolio helps me stand out and increases my visibility to potential employers, clients, and collaborators.
 3. **Document my learning**: Writing about my experiences, projects, and the technology I use enables me to reflect on my learning process and improve as a developer.
 4. **Connect with the community**: Sharing my work and ideas online opens up opportunities for networking and collaboration with other developers and professionals.
+<br/><br/>
 
 ## Technology Stack
 
@@ -32,6 +33,7 @@ I decided to use the following technologies:
 - It provides a simple and easy-to-understand templating language for creating custom layouts;
 - It comes with built-in support for syntax highlighting, making it perfect for showcasing code snippets;
 - The strong community and extensive documentation make it easy to get started and troubleshoot issues.
+<br/><br/>
 
 ### GitHub Pages
 
@@ -41,6 +43,7 @@ I decided to host my website on [GitHub Pages](https://pages.github.com/) becaus
 - It's free for personal use and provides seamless integration with GitHub repositories;
 - It supports custom domain names, allowing me to create a professional-looking URL;
 - Its strong connection to the developer community makes it a popular choice for hosting personal web pages and portfolios.
+<br/><br/>
 
 ### GitHub Actions
 
@@ -50,6 +53,7 @@ To automate the deployment process, I used [GitHub Actions](https://github.com/f
 - It's fully integrated with GitHub, making it easy to use and maintain;
 - It supports a wide range of community-contributed actions, which can be easily adapted and reused for various projects;
 - Using GitHub Actions demonstrates my proficiency in modern DevOps practices.
+<br/><br/>
 
 ## Conclusion
 
