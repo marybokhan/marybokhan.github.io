@@ -21,7 +21,7 @@ Let’s have a look at the differences and then we’ll dive into the details.
 **Key differences between my project and Apple's project:**
 
 1. **Data Parsing**: Apple's project parses JSON synchronously; I parse JSON asynchronously using `async/await`;
-2. **Image Handling**: Apple's project has local storage for images in the `Assets` directory; I dynamically downloaded images using `AsyncImage`;
+2. **Image Handling**: Apple's project has local storage for images in the `Assets` directory; I dynamically download images using `AsyncImage`;
 3. **Preview Stability**: my use of Swift Concurrency caused preview crashes, but then I figured out how to fix it.
 
 These differences are the key topics I will cover in this article.\
