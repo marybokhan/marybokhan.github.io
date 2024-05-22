@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CF1ST3DFX4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-CF1ST3DFX4');
+  </script>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Mary&#x27;s Blog</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://marybokhan.github.io/css/bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https://marybokhan.github.io/css/all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https://marybokhan.github.io/clean-blog.css">
+  <link rel="icon" href="https://marybokhan.github.io/img/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="https:&#x2F;&#x2F;marybokhan.github.io">Mary&#x27;s Blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https:&#x2F;&#x2F;marybokhan.github.io">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https:&#x2F;&#x2F;marybokhan.github.io&#x2F;about">About</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https:&#x2F;&#x2F;marybokhan.github.io&#x2F;resume">Resume</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https:&#x2F;&#x2F;marybokhan.github.io&#x2F;contact">Contact</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https://marybokhan.github.io/img/post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>Using Async&#x2F;Await and AsyncImage for SwiftUI app</h1>
+<span class="meta">Posted by
+    <a href="#">Mary</a>
+    on 21 March 2024
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>In this article, I will tell you about my first acquaintance with learning SwiftUI and using Swift Concurrency features.</p>
+<span id="continue-reading"></span>
+<p>I started learning SwiftUI with Apple’s Tutorial <a href="https://developer.apple.com/tutorials/swiftui">&quot;Introducing SwiftUI&quot;</a>.<br />
+During the course, I was building the &quot;Landmarks&quot; app, which has a collection of famous nature places in the USA. This course reminded me of one of my first personal projects “Parks UK”. At that time I built my app using UIKit and it contains information about National Parks in the UK.</p>
+<p>I decided that it would be good practice to rewrite my old app into SwiftUI using the same structure from the course. It wasn’t about just copying the code from the Apple course, as I faced some differences along the way and made some adjustments.</p>
+<p>Let’s have a look at the differences and then we’ll dive into the details.</p>
+<p><strong>Key differences between my project and Apple's project:</strong></p>
+<ol>
+<li><strong>Data Parsing</strong>: Apple's project parses JSON synchronously; I parse JSON asynchronously using <code>async/await</code>;</li>
+<li><strong>Image Handling</strong>: Apple's project has local storage for images in the <code>Assets</code> directory; I dynamically download images using <code>AsyncImage</code>;</li>
+<li><strong>Preview Stability</strong>: my use of Swift Concurrency caused preview crashes, but then I figured out how to fix it.</li>
+</ol>
+<p>These differences are the key topics I will cover in this article.<br />
+The link to my project &quot;Park UK&quot; is <a href="https://github.com/marybokhan/parks-of-uk">here</a>.</p>
+<h3 id="async-await-usage">Async/Await Usage</h3>
+<p>Let’s have a look at Apple’s &quot;Landmarks&quot; app function, which is responsible for getting the data from JSON:</p>
+<pre data-lang="swift" style="background-color:#fafafa;color:#383a42;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#a626a4;">func </span><span>load&lt;T: Decodable&gt;(_ filename: String) </span><span style="color:#a626a4;">-&gt;</span><span> T {
+</span><span>    </span><span style="color:#a626a4;">let</span><span> data: Data
+</span><span>    
+</span><span>    </span><span style="color:#a626a4;">guard let</span><span> file </span><span style="color:#a626a4;">=</span><span> Bundle</span><span style="color:#a626a4;">.</span><span>main</span><span style="color:#a626a4;">.</span><span>url(forResource: filename, withExtension: </span><span style="color:#c18401;">nil</span><span>)
+</span><span>    </span><span style="color:#a626a4;">else</span><span> {
+</span><span>        fatalError(</span><span style="color:#50a14f;">&quot;Couldn&#39;t find </span><span>\(filename) </span><span style="color:#50a14f;">in main bundle.&quot;</span><span>)
+</span><span>    }
+</span><span>    
+</span><span>    do {
+</span><span>        data </span><span style="color:#a626a4;">= try</span><span> Data(contentsOf: file)
+</span><span>    } catch {
+</span><span>        fatalError(</span><span style="color:#50a14f;">&quot;Couldn&#39;t load </span><span>\(filename) </span><span style="color:#50a14f;">from main bundle:</span><span style="color:#0997b3;">\n</span><span>\(error)</span><span style="color:#50a14f;">&quot;</span><span>)
+</span><span>    }
+</span><span>    
+</span><span>    do {
+</span><span>        </span><span style="color:#a626a4;">let</span><span> decoder </span><span style="color:#a626a4;">=</span><span> JSONDecoder()
+</span><span>        </span><span style="color:#a626a4;">return try</span><span> decoder</span><span style="color:#a626a4;">.</span><span>decode(T</span><span style="color:#a626a4;">.self</span><span>, from: data)
+</span><span>    } catch {
+</span><span>        fatalError(</span><span style="color:#50a14f;">&quot;Couldn&#39;t parse </span><span>\(filename) </span><span style="color:#50a14f;">as </span><span>\(T</span><span style="color:#a626a4;">.self</span><span>)</span><span style="color:#50a14f;">:</span><span style="color:#0997b3;">\n</span><span>\(error)</span><span style="color:#50a14f;">&quot;</span><span>)
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>We can see that the data is parsed synchronously on the main thread. This means that UI can be blocked until we get all the data to display. It can work well with lightweight data stored locally, but what about JSON data we get from the server or with more massive data? More likely, the app will freeze waiting for the data to display. It can lead to a bad user experience. The solution is to parse JSON files asynchronously.</p>
+<p>In my original &quot;Parks UK&quot; app, I used Grand Central Dispatch (GCD) for asynchronous loading. This time, I aimed to try a new <code>async/await</code> feature.</p>
+<p>First, I created the function which parses JSON file:</p>
+<pre data-lang="swift" style="background-color:#fafafa;color:#383a42;" class="language-swift "><code class="language-swift" data-lang="swift"><span>
+</span><span style="color:#a626a4;">func </span><span>loadParks() async throws </span><span style="color:#a626a4;">-&gt;</span><span> [Park] {
+</span><span>    </span><span style="color:#a626a4;">guard let</span><span> file </span><span style="color:#a626a4;">=</span><span> Bundle</span><span style="color:#a626a4;">.</span><span>main</span><span style="color:#a626a4;">.</span><span>url(forResource: </span><span style="color:#50a14f;">&quot;Parks&quot;</span><span>, withExtension: </span><span style="color:#50a14f;">&quot;json&quot;</span><span>)
+</span><span>    </span><span style="color:#a626a4;">else</span><span> {
+</span><span>        fatalError(</span><span style="color:#50a14f;">&quot;Parks.json not found&quot;</span><span>)
+</span><span>    }
+</span><span>    </span><span style="color:#a626a4;">let</span><span> data </span><span style="color:#a626a4;">= try</span><span> Data(contentsOf: file)
+</span><span>    </span><span style="color:#a626a4;">let</span><span> decoder </span><span style="color:#a626a4;">=</span><span> JSONDecoder()
+</span><span>    </span><span style="color:#a626a4;">return try</span><span> decoder</span><span style="color:#a626a4;">.</span><span>decode([Park]</span><span style="color:#a626a4;">.self</span><span>, from: data)
+</span><span>}
+</span></code></pre>
+<p>I then asynchronously executed this function within a <code>Task</code>:</p>
+<pre data-lang="swift" style="background-color:#fafafa;color:#383a42;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#a626a4;">func </span><span>load() {
+</span><span>    Task {
+</span><span>        do {
+</span><span>            </span><span style="color:#a626a4;">self.</span><span>parks </span><span style="color:#a626a4;">= try</span><span> await loadParks()
+</span><span>        } catch {
+</span><span>            fatalError(</span><span style="color:#50a14f;">&quot;Error loading parks: </span><span>\(error)</span><span style="color:#50a14f;">&quot;</span><span>)
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>And finally, triggered this loading process in the initializer:</p>
+<pre data-lang="swift" style="background-color:#fafafa;color:#383a42;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#a626a4;">init</span><span>() {
+</span><span>    load()
+</span><span>}
+</span></code></pre>
+<p>This approach ensures data is loaded without blocking the UI, significantly improving app performance and user experience.</p>
+<p>You can find these functions in my project “Parks UK” in the <code>ModelData</code> file.</p>
+<h3 id="asyncimage-usage">AsyncImage Usage</h3>
+<p>With the data structure ready and the JSON parsed, we're left to handle images, which are initially URL strings.</p>
+<pre data-lang="swift" style="background-color:#fafafa;color:#383a42;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#50a14f;">&quot;imageURL&quot;</span><span>: </span><span style="color:#50a14f;">&quot;https://www.nationalparks.uk/app/uploads/2020/09/hero-broads-600x400.jpg&quot;
+</span></code></pre>
+<p>We need to convert this String into a URL and download the image from the URL, and only after that, we can display the image.</p>
+<p>Previously, I managed image loading with GCD, but this time, I used SwiftUI's <code>AsyncImage</code> for a cleaner process.</p>
+<p>In the <code>ParkRow</code> view, I integrated <code>AsyncImage</code> like so:</p>
+<pre data-lang="swift" style="background-color:#fafafa;color:#383a42;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#a626a4;">let</span><span> imageURL </span><span style="color:#a626a4;">=</span><span> URL(string: park</span><span style="color:#a626a4;">.</span><span>imageURL)
+</span><span>
+</span><span>AsyncImage(url: imageURL) { image </span><span style="color:#a626a4;">in
+</span><span>	image</span><span style="color:#a626a4;">.</span><span>resizable()
+</span><span>} placeholder: {
+</span><span>	Image(</span><span style="color:#50a14f;">&quot;park-placeholder&quot;</span><span>)</span><span style="color:#a626a4;">.</span><span>resizable()
+</span><span>}
+</span><span style="color:#a626a4;">.</span><span>frame(width: </span><span style="color:#c18401;">50</span><span>, height: </span><span style="color:#c18401;">50</span><span>)
+</span></code></pre>
+<p>Now, the image is downloaded asynchronously and displayed in the app.</p>
+<p>You may notice that I used a placeholder image. Using a placeholder image ensures users are not left staring at empty spaces during image loading, maintaining a well-designed user experience regardless of internet speed or link validity.</p>
+<p>The placeholder image should be stored locally in the <code>Assets</code> directory.</p>
+<p>Additionally, <code>AsyncImage</code> seamlessly integrates with custom views, as demonstrated in the <code>ParkDetail</code> view:</p>
+<pre data-lang="swift" style="background-color:#fafafa;color:#383a42;" class="language-swift "><code class="language-swift" data-lang="swift"><span>AsyncImage(url: URL(string: park</span><span style="color:#a626a4;">.</span><span>imageURL)) { image </span><span style="color:#a626a4;">in
+</span><span>    CircleImage(image: image)
+</span><span>} placeholder: {
+</span><span>    CircleImage(image: Image(</span><span style="color:#50a14f;">&quot;park-placeholder&quot;</span><span>))
+</span><span>}
+</span><span style="color:#a626a4;">.</span><span>offset(y: </span><span style="color:#c18401;">-120</span><span>)
+</span><span style="color:#a626a4;">.</span><span>padding(</span><span style="color:#a626a4;">.</span><span>bottom, </span><span style="color:#c18401;">-100</span><span>)
+</span></code></pre>
+<p>All set up! This method greatly simplifies the code for image loading. </p>
+<p>With an asynchronous approach, the app launches faster, and transitions become smoother. </p>
+<p>It could be the end of the story, but one more thing…</p>
+<h3 id="crashes-in-the-preview">Crashes in the Preview</h3>
+<p>After implementing an asynchronous approach in the app, I noticed that some Previews started to crash. This issue occurred specifically in files where I utilized JSON data. </p>
+<p>I found out that this happens due to the usage of Swift Concurrency.
+This often happens because the Previews aren’t set up to handle asynchronous code correctly. SwiftUI Previews run synchronously, and starting asynchronous tasks directly in the view initializers or in the <code>onAppear</code> modifier can cause issues.</p>
+<p>One of the solutions can be mock data for previews. Instead of performing actual asynchronous operations in previews (which cause crashes), we can use mock data. This approach will allow us to bypass the need for <code>async/await</code> in previews and still visualize the views with representable data. This approach is similar to writing mocks for tests.</p>
+<p>Steps:</p>
+<ol>
+<li>
+<p><strong>Extend ModelData with a Mock Instance</strong></p>
+<p>First, let’s add an extension in the <code>ModelData</code> file with a static property called <code>mock</code>. Inside this property, we will manually create a <code>parks</code> mock.</p>
+<pre data-lang="swift" style="background-color:#fafafa;color:#383a42;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#a626a4;">extension</span><span> ModelData {
+</span><span>    </span><span style="color:#a626a4;">static var</span><span> mock: ModelData {
+</span><span>        </span><span style="color:#a626a4;">let</span><span> instance </span><span style="color:#a626a4;">=</span><span> ModelData()
+</span><span>        
+</span><span>        instance</span><span style="color:#a626a4;">.</span><span>parks </span><span style="color:#a626a4;">=</span><span> [
+</span><span>            Park(
+</span><span>                id: </span><span style="color:#c18401;">3</span><span>,
+</span><span>                name: </span><span style="color:#50a14f;">&quot;Exmoor&quot;</span><span>,
+</span><span>                country: </span><span style="color:#50a14f;">&quot;England&quot;</span><span>,
+</span><span>                isFavorite: </span><span style="color:#a626a4;">false</span><span>,
+</span><span>                isFeatured: </span><span style="color:#a626a4;">true</span><span>,
+</span><span>                imageURL: </span><span style="color:#50a14f;">&quot;https://...&quot;</span><span>,
+</span><span>                description: </span><span style="color:#50a14f;">&quot;...&quot;</span><span>,
+</span><span>                keyActivities: </span><span style="color:#50a14f;">&quot;Walking, ...&quot;</span><span>,
+</span><span>                website: </span><span style="color:#50a14f;">&quot;https://...&quot;</span><span>,
+</span><span>                coordinates: Park</span><span style="color:#a626a4;">.</span><span>Coordinates(</span><span style="color:#a626a4;">...</span><span>)
+</span><span>            ),
+</span><span>            Park(
+</span><span>                </span><span style="color:#a626a4;">...
+</span><span>            ),
+</span><span>            </span><span style="color:#a626a4;">...
+</span><span>        ]
+</span><span>        </span><span style="color:#a626a4;">return</span><span> instance
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
+<p>Inside the array, you can add as many mocks of the <code>Park</code> as you need.</p>
+<p>Here you can encounter an obstacle: you’re unable to create a <code>Park</code> instance, as there is no appropriate initializer available.
+This happens as the <code>Park</code> structure conforms to <code>Codable</code>, so it expects to be initialized automatically from a JSON by default. To create instances manually, we need to add a custom initializer to <code>Park</code>.</p>
+<p>The <code>Park</code> structure now looks like this:</p>
+<pre data-lang="swift" style="background-color:#fafafa;color:#383a42;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#a626a4;">struct</span><span> Park: Hashable, Codable, Identifiable {
+</span><span>    </span><span style="color:#a626a4;">var</span><span> id: Int
+</span><span>    </span><span style="color:#a626a4;">var</span><span> name: String
+</span><span>    </span><span style="color:#a626a4;">var</span><span> country: String
+</span><span>    </span><span style="color:#a626a4;">var</span><span> isFavorite: Bool
+</span><span>    </span><span style="color:#a626a4;">var</span><span> isFeatured: Bool
+</span><span>    </span><span style="color:#a626a4;">var</span><span> imageURL: String
+</span><span>    </span><span style="color:#a626a4;">var</span><span> description: String
+</span><span>    </span><span style="color:#a626a4;">var</span><span> keyActivities: String
+</span><span>    </span><span style="color:#a626a4;">var</span><span> website: String
+</span><span>    
+</span><span>    </span><span style="color:#a626a4;">private var</span><span> coordinates: Coordinates
+</span><span>    </span><span style="color:#a626a4;">var</span><span> locationCoordinate: CLLocationCoordinate2D {
+</span><span>        CLLocationCoordinate2D(
+</span><span>            latitude: coordinates</span><span style="color:#a626a4;">.</span><span>latitude,
+</span><span>            longitude: coordinates</span><span style="color:#a626a4;">.</span><span>longtitude
+</span><span>        )
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#a626a4;">struct</span><span> Coordinates: Hashable, Codable {
+</span><span>        </span><span style="color:#a626a4;">var</span><span> latitude: Double
+</span><span>        </span><span style="color:#a626a4;">var</span><span> longtitude: Double
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#a0a1a7;">// Custom initializer for mock
+</span><span>    </span><span style="color:#a626a4;">init</span><span>(
+</span><span>        id: Int,
+</span><span>        name: String,
+</span><span>        country: String,
+</span><span>        isFavorite: Bool,
+</span><span>        isFeatured: Bool,
+</span><span>        imageURL: String,
+</span><span>        description: String,
+</span><span>        keyActivities: String,
+</span><span>        website: String,
+</span><span>        coordinates: Coordinates
+</span><span>    ) {
+</span><span>        </span><span style="color:#a626a4;">self.</span><span>id </span><span style="color:#a626a4;">=</span><span> id
+</span><span>        </span><span style="color:#a626a4;">self.</span><span>name </span><span style="color:#a626a4;">=</span><span> name
+</span><span>        </span><span style="color:#a626a4;">self.</span><span>country </span><span style="color:#a626a4;">=</span><span> country
+</span><span>        </span><span style="color:#a626a4;">self.</span><span>isFavorite </span><span style="color:#a626a4;">=</span><span> isFavorite
+</span><span>        </span><span style="color:#a626a4;">self.</span><span>isFeatured </span><span style="color:#a626a4;">=</span><span> isFeatured
+</span><span>        </span><span style="color:#a626a4;">self.</span><span>imageURL </span><span style="color:#a626a4;">=</span><span> imageURL
+</span><span>        </span><span style="color:#a626a4;">self.</span><span>description </span><span style="color:#a626a4;">=</span><span> description
+</span><span>        </span><span style="color:#a626a4;">self.</span><span>keyActivities </span><span style="color:#a626a4;">=</span><span> keyActivities
+</span><span>        </span><span style="color:#a626a4;">self.</span><span>website </span><span style="color:#a626a4;">=</span><span> website
+</span><span>        </span><span style="color:#a626a4;">self.</span><span>coordinates </span><span style="color:#a626a4;">=</span><span> coordinates
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
+</li>
+<li>
+<p><strong>Use Mock Data in Previews</strong></p>
+<p>Now we can use the mock data in places where a crash appeared. For example, let’s have a look at the <code>ParkDetail</code> file:</p>
+<pre data-lang="swift" style="background-color:#fafafa;color:#383a42;" class="language-swift "><code class="language-swift" data-lang="swift"><span>#Preview {
+</span><span>    ParkDetail(park: ModelData</span><span style="color:#a626a4;">.</span><span>mock</span><span style="color:#a626a4;">.</span><span>parks[</span><span style="color:#c18401;">1</span><span>])
+</span><span>        </span><span style="color:#a626a4;">.</span><span>environment(ModelData())
+</span><span>}
+</span></code></pre>
+<p>Voila! The crash disappeared, and now we can see the preview in the canvas.</p>
+</li>
+</ol>
+<h3 id="lessons-learned">Lessons Learned</h3>
+<ul>
+<li>Used the <code>async/await</code> for asynchronous parsing JSON data to improve the performance and user experience of the app;</li>
+<li>Used the <code>AsyncImage</code> to asynchronously download images from URL and simplify the code;</li>
+<li>Fixed crashes in SwiftUI Previews by adding mock data.
+<br/><br/></li>
+</ul>
+<h3 id="conclusion">Conclusion</h3>
+<p>Apple’s introductory course was a great start to getting familiar with SwiftUI. Using the same approach, I refactored one of my projects and learned how to use Swift Concurrency features and fix preview crashes.</p>
+<p>I decided to document my learning experience due to the issues that appeared along the way. Despite reviewing numerous resources and forums, I couldn’t find clear answers to the problems. Ultimately, through trial and error and by consulting the documentation, I discovered the solutions.</p>
+<p>I hope the topics covered in this article could be a great compliment to Apple’s introductory course.</p>
+<p>Thank you for reading!</p>
+
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https://marybokhan.github.io/tags/swiftui/">#SwiftUI</a>
+            
+            <a href="https://marybokhan.github.io/tags/async-await/">#Async&#x2F;Await</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;marybokhan">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;marybokhan">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Mary Bokhan
+            2024</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://marybokhan.github.io/js/jquery.min.js"></script>
+  <script src="https://marybokhan.github.io/js/bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https://marybokhan.github.io/js/clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+</html>
