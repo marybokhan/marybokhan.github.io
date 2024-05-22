@@ -6,7 +6,7 @@ template = "resume.html"
 
 ## Education
 
-I got BS in Water Quality and Wastewater Treatment Management at Belarusian National Technical University and filled my CS knowledge gaps by courses and self-education.
+I got BS in Water Resources Engineering at Belarusian National Technical University and filled my CS knowledge gaps by courses and self-education.
 
 ## Experience
 
@@ -14,10 +14,8 @@ I got BS in Water Quality and Wastewater Treatment Management at Belarusian Nati
 
 Feb 2024 - Present
 
-- **SwiftUI**: Dedicating significant time to mastering SwiftUI, and applying learned skills to develop personal projects.
-- **UX/UI Design**:  Actively learning and applying UX/UI design principles to mobile projects, as well as for my website.
-- **Website Development**: Designing and developing a personal website to showcase my portfolio and blog content.
-- **Blog Writing**: Producing and publishing blog content focused on my learning journey in SwiftUI and personal project developments.
+- **Personal App Development**: Building the app, where I handle everything from UI/UX design to iOS development.
+- **Startup Collaboration**: Partnering with startups to help build and refine their iOS apps.
 <br/><br/>
 
 ### iOS Software Engineer, Moneybox
@@ -26,7 +24,7 @@ Feb 2024 - Present
 
 Jul 2023 - Jan 2024
 
-Moneybox is a saving and investing app that helps people build their wealth with confidence.
+Moneybox is a saving and investing app that helps people build their wealth.
 
 ⚙️ Key responsibilities:
 - Implemented new features within the iOS application in the Customer Experience Mission, enhancing user experience and app functionality;
@@ -41,14 +39,15 @@ Moneybox is a saving and investing app that helps people build their wealth with
 
 May 2022 - June 2023
 
-During my career break, I dedicated my time to upskilling and transitioning from a QA Engineer to an iOS Software Engineer. This period allowed me to focus on expanding my knowledge, refining my technical abilities, and gaining hands-on experience in iOS development.
+Dedicated my time to upskilling and transitioning from a QA Engineer to an iOS Software Engineer. 
 
-Key activities during my career break included:
+⚙️ Key activities:
 
-📚 Completed various iOS development courses and workshops\
-🚀 Developed personal projects to apply new skills and showcase my capabilities\
-💻 Regularly solving algorithm problems to sharpen my problem-solving abilities\
-🧠 Staying up-to-date with the latest trends and best practices in mobile app development
+- Completed various iOS development courses
+- Developed personal projects to apply new skills
+- Regularly solving algorithm problems
+- Networking with industry professionals
+- Staying up-to-date with the latest trends and best practices in mobile app development
 <br/><br/>
 
 ### QA Engineer, Prisma Labs
@@ -119,13 +118,7 @@ Platforms: iPad, Microsoft HoloLens, Microsoft Surface.
 
 #### [Notes](https://github.com/marybokhan/notes)
 
-A great tool for creating, saving, editing and deleting notes.\
-It has four sections:
-
-- Today
-- Shopping List
-- Ideas
-- Quotes
+This app is a great tool for creating, saving, editing, and deleting notes that can be divided into 4 groups: Today, Shopping, Ideas, Quotes.
 
 #### [Music Search](https://github.com/marybokhan/music-search)
 
